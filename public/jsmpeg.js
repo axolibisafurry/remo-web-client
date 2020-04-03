@@ -135,11 +135,12 @@ JSMpeg.VideoElement = (function() {
         unlockAudioElement = this.unmuteButton;
       }
       this.unlockAudioBound = this.onUnlockAudio.bind(this, unlockAudioElement);
-      unlockAudioElement.addEventListener(
-        "touchstart",
-        this.unlockAudioBound,
-        false
-      );
+      unlockAudioElement.addEventListener("touchstart", function(){
+	player.audioOut.unlock(function(){
+		alert('unlocked!');
+	});
+});
+
       unlockAudioElement.addEventListener("click", this.unlockAudioBound, true);
     }
   };
